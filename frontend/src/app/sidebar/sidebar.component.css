@@ -1,0 +1,32 @@
+/* sidebar layout */
+.sidebar { position: fixed; top: 0; left: 0; height: 100vh; width: 250px; background: #fff; box-shadow: 2px 0 10px rgba(0,0,0,0.08); z-index: 2000; transition: transform 0.3s; transform: translateX(0);}
+.sidebar.collapsed { transform: translateX(-100%);}
+.burger-btn { outline: none; position: fixed; left: 8px; font-size: 2rem; background: none; border: none; cursor: pointer; z-index: 2100; color: #6c757d; transition: color 0.2s;}
+.burger-btn:hover { color: #333; }
+/* sidebar layout */
+/* sidebar style */
+.sidebar-inner { margin-top: 56px; padding: 24px 10px 24px 10px; display: flex; flex-direction: column; gap: 24px; height: calc(100vh - 56px); overflow-y: auto; transition: padding 0.3s; }
+.sidebar.collapsed .sidebar-inner { padding: 24px 0 24px 0; align-items: center; gap: 12px; }
+.logo-container{ width: 100%;}
+.logo-container img{ width: 100%; }
+.menu { margin-bottom: 12px; }
+.user-data { display: flex; gap: 2px; margin-bottom: 5px;}
+.left-user,
+.right-add { width: 50%; display: flex; flex-direction: column; text-align: left;}
+.left-user p,
+.right-add p {color: #38249b; font-weight: bold; font-size: 20px;}
+.menu button { width: 100%; }
+.choice:hover,
+.menu-item a:hover {background-color: #38249b; color: #e6edf3;}
+.drop-down-menu { display: block; }
+.menu { position: relative; margin-bottom: 6px; width: 100%; display: block; }
+.choice {display: block; padding: 12px 10px; color: #666666; background: #f7f7f7; border-radius: 4px; text-decoration: none; font-size: 15px; font-weight: bold; cursor: pointer; transition: background 0.2s; width: 100%; box-sizing: border-box; }
+.menu-content { display: none; position: static; min-width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 0 0 8px 8px; z-index: 1; padding: 0; margin: 0; animation: fadeInDown 0.2s;}
+.menu:focus {outline: none;}
+.menu-content {display: none}
+.menu-content.open {display: block;}
+.menu-item {display: flex; flex-direction: column; gap: 0; width: 100%; }
+.menu-item a { padding: 14px 22px; color: #666666; background: #f7f7f7; text-decoration: none; border-radius: 8px; font-size: 16px; border-bottom: 1px solid #f0f0f0; background: #fff; transition: background 0.2s; width: 100%; box-sizing: border-box; cursor: pointer; font-weight: bold; }
+.margin{margin-bottom: 50px; }
+.disabled { pointer-events: none; opacity: 0.5; cursor: not-allowed; }
+.sidebar.collapsed .sidebar-inner { overflow: hidden; }

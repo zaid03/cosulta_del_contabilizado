@@ -1,0 +1,153 @@
+<button class="burger-btn" (click)="toggleSidebar()" [attr.aria-label]="collapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+&#9776;
+</button>
+<div class="sidebar" [class.collapsed]="collapsed">
+  <div class="sidebar-inner">
+    <div class="logo-container">
+      <img [src]="logoPath" alt="Logo" class="login-logo">
+    </div>
+    <div class="menu">
+      <div class="user-data">
+        <div class="left-user">
+          <p>Persona</p>
+          <p>Perfil</p>
+        </div>
+        <div class="right-add">
+          <p>{{ usucod }}</p>
+          <p>{{ perfil }}</p>
+        </div>
+      </div>
+      <button class="purple-btn" (click)="logout()">Desconectarse</button>
+    </div>
+
+    <a class="choice" (click)="navigateTo('panel')">Panel Principal</a>
+
+    <div class="drop-down-menu">
+      <div class="menu" (click)="organigrama = !organigrama" tabindex="0">
+        <a class="choice">Organigrama</a>
+        <div class="menu-content" [class.open]="organigrama">
+          <div class="menu-item">
+            <a class="acEje" 
+              [class.disabled]="isDisabled('acEje')"
+              (click)="navigateTo('ejercicios')"
+            >Consulta de ejercicios</a>
+            <a class="acCGe" 
+              [class.disabled]="isDisabled('acCGe')"
+              (click)="navigateTo('centroGestor')"
+            >Centros gestores
+            </a>
+            <a class="AcCCo" 
+              [class.disabled]="isDisabled('AcCCo')"
+              (click)="navigateTo('coste')"
+            >Centros de coste</a>
+            <a class="acDep" 
+              [class.disabled]="isDisabled('acDep')"
+              (click)="navigateTo('servicios')"
+            >Servicios</a>
+            <a class="acPer" 
+              [class.disabled]="isDisabled('acPer')"
+              (click)="navigateTo('personas')"
+              >Personas</a>
+            <a class="#" 
+                (click)="navigateTo('personas-por-servicios')"
+            >Consulta de personas por servicios</a>
+            <a class="acLEn" 
+              [class.disabled]="isDisabled('acLEn')"
+              (click)="navigateTo('entrega')"
+            >Lugares de entrega</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu" (click)="proveedores = !proveedores" tabindex="0">
+        <a class="choice">Proveedores</a>
+        <div class="menu-content" [class.open]="proveedores">
+          <div class="menu-item">
+            <a class="acCoTer" 
+              [class.disabled]="isDisabled('acCoTer')"
+              (click)="navigateTo('Cproveedores')"
+            >Consulta de proveedores</a>
+            <a class="acTer" 
+              [class.disabled]="isDisabled('acTer')"
+              (click)="navigateTo('proveedorees')"
+            >Gestión de proveedores</a>
+            <a class="acCon" 
+              [class.disabled]="isDisabled('acCon')"
+              (click)="navigateTo('contratos')"
+            >Gestión de contratos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu" (click)="contabilidad = !contabilidad" tabindex="0">
+        <a class="choice">Contabilidad</a>
+        <div class="menu-content" [class.open]="contabilidad">
+          <div class="menu-item">
+            <a class="acFacC" 
+              [class.disabled]="isDisabled('acFacC')"
+              (click)="navigateTo('Cfactura')"
+            >Consulta de facturas</a>
+            <a class="acFac" 
+              [class.disabled]="isDisabled('acFac')"
+              (click)="navigateTo('facturas')"
+            >Gestión de facturas
+            </a> 
+            <a class="acMCon" 
+              [class.disabled]="isDisabled('acMCon')"
+              (click)="navigateTo('contabilizacion')"
+            >Monitor de contabilización
+            </a>
+            <a class="acRCon" 
+              [class.disabled]="isDisabled('acRCon')"
+              (click)="navigateTo('Fcontabilizadas')"
+            >Gestión de facturas contabilizadas</a>
+            <a class="#" 
+              (click)="navigateTo('Ccontabilizado')"
+            >Consulta del contabilizado</a>
+            <a class="#" 
+              (click)="navigateTo('Ccontabilizar')"
+            >Consulta del pendiente de contabilizar</a>
+            <a class="acCoGBSM"
+              [class.disabled]="isDisabled('acCoGBSM')"
+              (click)="navigateTo('Ccredito')"
+            >Consulta bolsa de crédito</a>
+            <a class="acGBS" 
+              [class.disabled]="isDisabled('acGBS')"
+              (click)="navigateTo('credito')"
+            >Gestión bolsa de crédito</a>
+            <a class="acGBSM" 
+              [class.disabled]="isDisabled('acGBSM')"
+              (click)="navigateTo('credito-Cge')"
+            >Gestión bolsa de crédito por centro gestor</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu" (click)="articulos = !articulos" tabindex="0">
+        <a class="choice">Artículos</a>
+        <div class="menu-content" [class.open]="articulos">
+          <div class="menu-item">
+            <a class="acAFA" 
+              [class.disabled]="isDisabled('acAFA')"
+              (click)="navigateTo('familia')"
+            >Familias y subfamilias</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu" (click)="temp = !temp" tabindex="0">
+        <a class="choice">Tipos</a>
+        <div class="menu-content" [class.open]="temp">
+          <div class="menu-item">
+            <a class="" 
+              (click)="navigateTo('almacenaje')"
+            >Tipos de almacenaje</a>
+            <a class="margin" 
+              (click)="navigateTo('unidades')"
+            >tipos de unidades</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

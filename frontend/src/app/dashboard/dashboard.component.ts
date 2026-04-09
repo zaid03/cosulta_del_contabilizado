@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
   proveedores = false;
   contabilidad = false;
   articulos = false;
+  temp = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   //main functions
@@ -144,6 +146,12 @@ export class DashboardComponent implements OnInit {
         break;
       case 'Fcontabilizadas':
         break;
+      case 'Ccontabilizado':
+        this.router.navigate(['/Ccontabilizado']);
+        break;
+      case 'Ccontabilizar':
+        this.router.navigate(['/Ccontabilizar']);
+        break;
       case 'Ccredito':
         this.router.navigate(['Ccredito']);
         break;
@@ -152,6 +160,15 @@ export class DashboardComponent implements OnInit {
         break;
       case 'credito-Cge':
         this.router.navigate(['credito-Cge']);
+        break;
+      case 'familia':
+        this.router.navigate(['/familia'])
+        break;
+      case 'almacenaje':
+        this.router.navigate(['/almacenaje']);
+        break;
+      case 'unidades':
+        this.router.navigate(['/unidades']);
         break;
       default:
         break;
@@ -176,5 +193,74 @@ export class DashboardComponent implements OnInit {
 
   goToCge() {
     this.router.navigate(['/centro-gestor']);
+  }
+  
+  //services grid functions
+  showServices: boolean = false;
+  
+  launchAddCentroGestor() {
+    this.showServices = true;
+    this.fetchServices();
+  }
+
+  closeShowServices() {
+    this.showServices = false;
+  }
+
+  servicesError: string = '';
+  services: any[] = [];
+  page: number = 0;
+  pageSize: number = 20;
+  private fetchServices(): void {
+    this.servicesError = '';
+    if (this.entcod === null || this.eje === null) return;
+
+    this.http.get<any[]>(`${environment.backendUrl}/api/dep/fetch-services-persona/${this.entcod}/${this.eje}/${this.usucod}`).subscribe({
+      next: (res) => {
+
+        const requests = res.map(res =>
+          this.http.get(`${environment.backendUrl}/api/cge/fetch-description-services/${this.entcod}/${this.eje}/${res.cgecod}`, { responseType: 'text' })
+            .pipe(
+              map(cgedes => ({ ...res, cgedes })),
+              catchError(() => of({ ...res, cgedes: null }))
+            )
+        );
+        forkJoin(requests).subscribe({
+          next: (servicesWithDescriptions) => {
+            this.services = servicesWithDescriptions;
+            this.page = 0;
+          },
+          error: (err) => {
+            this.servicesError = 'Error al obtener descripciones de centros gestores';
+            console.error(err);
+          }
+        });
+        this.page = 0;
+      },
+      error: (err) => {
+        this.servicesError = err.error.error ?? err.error;
+      }
+    });
+  }
+  
+  get paginatedServices(): any[] {
+    if (!this.services || this.services.length === 0) return [];
+    const start = this.page * this.pageSize;
+    return this.services.slice(start, start + this.pageSize);
+  }
+  get totalPages(): number {
+    return Math.max(1, Math.ceil((this.services?.length ?? 0) / this.pageSize));
+  }
+  prevPage(): void {
+    if (this.page > 0) this.page--;
+  }
+  nextPage(): void {
+    if (this.page < this.totalPages - 1) this.page++;
+  }
+  goToPage(event: any): void {
+    const inputPage = Number(event.target.value);
+    if (inputPage >= 1 && inputPage <= this.totalPages) {
+      this.page = inputPage - 1;
+    }
   }
 }

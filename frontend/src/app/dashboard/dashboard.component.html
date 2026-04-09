@@ -94,6 +94,12 @@
                 [class.disabled]="isDisabled('acRCon')"
                 (click)="navigateTo('Fcontabilizadas')"
               >Gestión de facturas contabilizadas</a>
+              <a class="#" 
+                (click)="navigateTo('Ccontabilizado')"
+              >Consulta del contabilizado</a>
+              <a class="#" 
+                (click)="navigateTo('Ccontabilizar')"
+              >Consulta del pendiente de contabilizar</a>
               <a class="acCoGBSM"
                 [class.disabled]="isDisabled('acCoGBSM')"
                 (click)="navigateTo('Ccredito')"
@@ -106,6 +112,32 @@
                 [class.disabled]="isDisabled('acGBSM')"
                 (click)="navigateTo('credito-Cge')"
               >Gestión bolsa de crédito por centro gestor</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu" (click)="articulos = !articulos" tabindex="0">
+          <a class="choice">Artículos</a>
+          <div class="menu-content" [class.open]="articulos">
+            <div class="menu-item">
+              <a class="acAFA margin" 
+                [class.disabled]="isDisabled('acAFA')"
+                (click)="navigateTo('familia')"
+              >Familias y subfamilias</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu" (click)="temp = !temp" tabindex="0">
+          <a class="choice">Tipos</a>
+          <div class="menu-content" [class.open]="temp">
+            <div class="menu-item">
+              <a class="" 
+                (click)="navigateTo('almacenaje')"
+              >Tipos de almacenaje</a>
+              <a class="margin" 
+                (click)="navigateTo('unidades')"
+              >tipos de unidades</a>
             </div>
           </div>
         </div>
@@ -162,8 +194,65 @@
               (click)="$event.preventDefault()"
             ><span class="color-text"> Contable</span><br>
           </div>
+          <div class="purple-btn services-fix" (click)="launchAddCentroGestor()">Ver Servicios de la Persona</div>
         </div>
       </div>
     <p class="status">{{centroGestorStatus}}</p>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showServices" (click)="closeShowServices()"></div>
+<div class="add-confirm-modal" *ngIf="showServices">
+  <div class="btns">
+    <div class="title">
+      <h3>Servicios asociados del usario</h3>
+    </div>
+    <button class="delete-btn" (click)="closeShowServices()">✖</button>
+  </div>
+  <h1 class="errorBtn">{{servicesError}}</h1>
+  <div class="detail-services">
+    <table class="user-services-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Centro Gestor</th>
+          <th>Servicio</th>
+          <th>Comp.</th>
+          <th>Alma.</th>
+          <th>Conta.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of paginatedServices">
+          <td>{{p.depcod}}</td>
+          <td>{{p.cgedes}}</td>
+          <td>{{p.depdes}}</td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depcom === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depalm === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+          <td>
+            <input 
+              type="checkbox"
+              [checked]="p.depint === 1"
+              class="locked-radio"
+              (click)="$event.preventDefault()"
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

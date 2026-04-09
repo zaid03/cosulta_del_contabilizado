@@ -93,7 +93,7 @@ export class ConsultaContabilizadoComponent {
   goToPage(event: any): void {const inputPage = Number(event.target.value); if (inputPage >= 1 && inputPage <= this.totalPages) {this.page = inputPage - 1;}}
 
   importe(fdeimp: number, fdedif: number) {
-    if (!fdeimp || !fdedif) {return}
+    if (!fdeimp && !fdedif) {return}
     return fdeimp + fdedif;
   }
 

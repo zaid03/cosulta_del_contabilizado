@@ -1,0 +1,21 @@
+<div class="main-container">
+  <div class="main-wrapper">
+    <table *ngIf="tableData.length > 0" class="main-table">
+      <thead>
+        <tr>
+          <th>Ejercicio</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of tableData">
+          <td>{{ e.eje }}</td>
+          <td>
+            <button class="purple-btn" (click)="selectRow(e)">Seleccionar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>  
+    <div *ngIf="loading" class="color">Cargando...</div>
+  </div>
+</div>

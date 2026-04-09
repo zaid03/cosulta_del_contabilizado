@@ -1,0 +1,22 @@
+<div class="main-container">
+  <table *ngIf="tableData.length > 0" class="main-table">
+    <thead>
+      <tr>
+        <th>Entidad</th>
+        <th>Perfil</th>
+        <th>Nombre</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tableData">
+        <td>{{ t.entcod }}</td>
+        <td>{{ t.percod }}</td>
+        <td>{{ t.entnom }}</td>
+        <td>
+          <button class="purple-btn" (click)="selectRow(t)">Seleccionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

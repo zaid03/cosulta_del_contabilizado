@@ -1,0 +1,18 @@
+<div class="login-container">
+    <div class="logo-container">
+       <img [src]="logoPath" alt="Logo" class="login-logo">
+    </div>
+    <div class="login-status" *ngIf="isValidating && !validationFailed">
+        {{ loadingMessage }}
+    </div>
+    <p class="error" *ngIf="errormessage">{{ errormessage }}</p>
+    <button 
+        class="purple-tbn" 
+        *ngIf="showLoginButton" 
+        (click)="login()">
+        Iniciar sesión
+    </button>
+    <div *ngIf="!isValidating && !validationFailed && !errormessage && !showLoginButton" class="login-status">
+        Redirigiendo a CAS...
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.main-wrapper { width: 50%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.main-container { background-color: #f0f0f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.main-table { max-width: 60%; }
+.main-table tbody td:last-child{text-align: center;}
+.color { color: #38249b; font-weight: bold;}
+@media (min-width: 1600px) {
+  .table-container { padding: 40px 0; }
+  .main-table { max-width: 70% !important; font-size: 1.2rem; }
+  .main-table th,
+  .main-table td { padding: 18px 22px; font-size: 1.05rem; }
+  .main-table button,
+  .cancel-btn,
+  .message { font-size: 1.2rem; }
+}

@@ -1,0 +1,86 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'war'
+    id 'maven-publish'
+    id 'jacoco'
+}
+
+group = 'es.iass.scap'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.poi:poi-ooxml:5.2.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.apache.commons:commons-text:1.10.0'
+    implementation 'com.openhtmltopdf:openhtmltopdf-pdfbox:1.0.10'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    testImplementation 'com.h2database:h2'  
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+bootWar {
+    archiveFileName = 'scap.war'
+}
+
+// publishing {
+//     publications {
+//         mavenJava(MavenPublication) {
+//             from components.web 
+
+//             groupId = project.group
+//             artifactId = project.name
+//             version = project.version
+//         }
+//     }
+
+//     repositories {
+//         maven {
+//             name = 'nexus'
+
+//             def releasesRepoUrl = System.getenv('NEXUS_RELEASES_URL')
+//             def snapshotsRepoUrl = System.getenv('NEXUS_SNAPSHOTS_URL')
+
+//             url = uri(version.toString().endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl)
+
+//             credentials {
+//                 username = System.getenv('SERVICE_USER') as String
+//                 password = System.getenv('PASSWORD') as String
+//             }
+//         }
+//     }
+// }
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+    dependsOn test
+}

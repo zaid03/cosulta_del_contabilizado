@@ -1,0 +1,20 @@
+.main-container { background-color: #f0f0f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.main-table { max-width: 50%; }
+.main-table thead th:first-child,
+.main-table thead th:nth-child(2),
+.main-table thead th:last-child {width: 18%;}
+.main-table tbody td:last-child{text-align: center;}
+@media (min-width: 1400px) {
+  .table-container { padding: 32px 0; }
+  .main-table { max-width: 85%; font-size: 1.05rem; }
+  .main-table th,
+  .main-table td { padding: 14px 18px; font-size: 1rem; }
+  .main-table button { padding: 8px 16px; font-size: 0.95rem; }
+}
+@media (min-width: 1700px) {
+  .table-container { padding: 40px 0; }
+  .main-table { max-width: 70% !important; font-size: 1.2rem;}
+  .main-table th,
+  .main-table td { padding: 18px 22px; font-size: 1.05rem; }
+  .main-table button { padding: 10px 20px; font-size: 1.05rem; }
+}

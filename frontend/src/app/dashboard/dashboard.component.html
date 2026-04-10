@@ -96,7 +96,7 @@
               >Gestión de facturas contabilizadas</a>
               <a class="#" 
                 (click)="navigateTo('Ccontabilizado')"
-              >Consulta del contabilizado</a>
+              >Consult del contabilizado</a>
               <a class="#" 
                 (click)="navigateTo('Ccontabilizar')"
               >Consulta del pendiente de contabilizar</a>
@@ -135,7 +135,7 @@
               <a class="" 
                 (click)="navigateTo('almacenaje')"
               >Tipos de almacenaje</a>
-              <a class="" 
+              <a class="margin" 
                 (click)="navigateTo('unidades')"
               >tipos de unidades</a>
             </div>
@@ -158,8 +158,6 @@
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
   </div> 
@@ -226,11 +224,11 @@
     <div class="title">
       <h3>Servicios asociados del usario</h3>
     </div>
-    <button class="delete-btn" (click)="closeShowServices()">✖</button>
+    <button class="red-btn" (click)="closeShowServices()">✖</button>
   </div>
   <h1 class="errorBtn">{{servicesError}}</h1>
   <div class="detail-services">
-    <table class="user-services-table">
+    <table class="main-table">
       <thead>
         <tr>
           <th>Código</th>

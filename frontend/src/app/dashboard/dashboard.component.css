@@ -47,20 +47,20 @@
 .status { color: rgb(221, 66, 66)}  
 .right-params {width: 50%;}
 .services-fix {width: 30%; margin-top: 5px;}
-.checkboxes input[type="checkbox"] { margin: 0; accent-color: #25176b; width: 16px; height: 25px; vertical-align: middle; outline: none; box-shadow: none; }
+.checkboxes input[type="checkbox"] { margin: 0; accent-color: #25176b; width: 16px; height: 25px; vertical-align: middle; outline: none; box-shadow: none;}
 .color-text {color: #38249b; font-weight: bold;}
 .version {display: flex; gap: 10px; justify-content: flex-end; }
 /* dashboard */
 /* services grid */
 .add-confirm-modal {width: 80%; top: 8% !important;}
 .title {width: 97%;}
-.user-services-table thead th:first-child,
-.user-services-table thead th:last-child,
-.user-services-table thead th:nth-child(4),
-.user-services-table thead th:nth-child(5) {width: 90px;}
-.user-services-table tbody td input[type="checkbox"] { margin: 0; accent-color: #25176b; width: 14px; height: 18px; vertical-align: middle; outline: none; box-shadow: none; }
-.user-services-table tbody td:nth-child(4),
-.user-services-table tbody td:nth-child(5),
-.user-services-table tbody td:nth-child(6) { text-align: center;}
+.main-table thead th:first-child,
+.main-table thead th:last-child,
+.main-table thead th:nth-child(4),
+.main-table thead th:nth-child(5) {width: 90px;}
+.main-table tbody td input[type="checkbox"] { margin: 0; accent-color: #25176b; width: 14px; height: 18px; vertical-align: middle; outline: none; box-shadow: none; }
+.main-table tbody td:nth-child(4),
+.main-table tbody td:nth-child(5),
+.main-table tbody td:nth-child(6) { text-align: center;}
 /* services grid */
 .margin{ margin-top: 5px; }

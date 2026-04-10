@@ -9,12 +9,14 @@ import com.example.backend.sqlserver2.repository.DepRepository;
 import com.example.backend.sqlserver2.repository.DpeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 import java.util.Map;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -97,5 +99,24 @@ public class CgeController {
             replacement.getDEPCOM() != null ? replacement.getDEPCOM() : 0
         ));
         return existing;
+    }
+
+    //fetching description for services
+    @GetMapping("/fetch-description-services/{ent}/{eje}/{cgecod}")
+    public ResponseEntity<String> fetchDescriptionForCge(
+            @PathVariable Integer ent,
+            @PathVariable String eje,
+            @PathVariable String cgecod) {
+        try {
+            Optional<String> description = cgeRepository.findFirstByENTAndEJEAndCGECOD(ent, eje, cgecod).map(Cge::getCGEDES);
+            if (description.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(SIN_RESULTADO);
+            }
+            return ResponseEntity.ok(description.get());
+        } catch (DataAccessException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ERROR + ex.getMostSpecificCause().getMessage());
+        }
     }
 }

@@ -148,6 +148,23 @@
           </div>
         </div>
       </div>
+
+      <div class="menu" (click)="temp2 = !temp2" tabindex="0">
+        <a class="choice">Consultas</a>
+        <div class="menu-content" [class.open]="temp2">
+          <div class="menu-item">
+            <a class="" 
+              (click)="navigateTo('almacenes')"
+            >Consulta analitica de almacenes</a>
+            <a class="" 
+              (click)="navigateTo('Cfamilia')"
+            >Consulta analitica de familias</a>
+            <a class="margin" 
+              (click)="navigateTo('Carticulos')"
+            >Consulta analitica de articulos</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
